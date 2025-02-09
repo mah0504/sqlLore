@@ -16,13 +16,19 @@ CREATE TABLE dependent (
 INSERT INTO employee (ssn, fname, lname) VALUES
 ('123456789', 'John', 'Doe'),
 ('987654321', 'Jane', 'Smith'),
-('112233445', 'Alice', 'Lee');
+('112233445', 'Alice', 'Lee'),
+('222222222', 'Maha', 'Mih'),
+('111111111', 'Meow', 'LLLL');
+
 
 INSERT INTO dependent (essn, dependent_name, relationship) VALUES
 ('123456789', 'Mike', 'Son'),
-('987654321', 'Lily', 'Daughter');
+('987654321', 'Lily', 'Daughter'),
+('111111111', 'Meow', 'Daugther');
+
 SELECT fname, lname
 FROM employee
+
 WHERE NOT EXISTS (
     SELECT * 
     FROM dependent
