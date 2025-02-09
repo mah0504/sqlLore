@@ -1,3 +1,8 @@
+-- Supprimer la table 'presences' si elle existe
+DROP TABLE IF EXISTS presences;
+
+-- Supprimer la table 'cadeaux' si elle existe
+DROP TABLE IF EXISTS cadeaux;
 -- Création de la table 'presences'
 CREATE TABLE presences (
     nopige INT,
