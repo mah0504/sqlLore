@@ -1,9 +1,3 @@
-CREATE TABLE works_on (
-    essn TEXT,
-    pno INTEGER,
-    hours INTEGER
-);
-
 SELECT DISTINCT essn
 FROM works_on
 WHERE (pno, hours) IN 
