@@ -1,0 +1,30 @@
+DROP TABLE IF EXISTS R;
+DROP TABLE IF EXISTS S;
+
+CREATE TABLE R (
+    A INT,
+    B INT,
+    C INT
+);
+
+CREATE TABLE S (
+    B INT,
+    C INT, 
+    D INT 
+);
+
+INSERT INTO R (A, B, C) VALUES
+(1, NULL, 4),
+(2, 3, 5),
+(2, 4, 5); 
+
+
+INSERT INTO S (B, C, D) VALUES
+(NULL ,4 ,7),
+(NULL, 4, 8),
+(4, 5, 10),
+(5, 7, 8); 
+
+SELECT * 
+FROM R 
+LEFT JOIN S ON R.B = S.B AND R.C = S.C;
