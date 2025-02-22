@@ -76,17 +76,35 @@ e and s that both range over the EMPLOYEE relation:
 
 
 
+8.6.6 Transforming the Universal and Existential Quantifiers
+
+des ndc : (∀t)(F) ≡ NOT (∃t)(NOT F).
+ 
+
+Trans- form one type of quantifier into the other with negation (preceded by NOT); AND and OR replace one another; 
+a negated formula becomes unnegated; and an un- negated formula becomes negated. 
+Some special cases of this transformation can be stated as follows, where the ≡ symbol stands for equivalent to:
 
 
+(∀x) (P(x)) ≡ NOT (∃x) (NOT (P(x))) 
+
+(∃x) (P(x)) ≡ NOT (∀x) (NOT (P(x)))
+
+(∀x) (P(x) AND Q(x)) ≡ NOT (∃x) (NOT (P(x)) OR NOT (Q(x))) 
+
+(∀x) (P(x) OR Q(x)) ≡ NOT (∃x) (NOT (P(x)) AND NOT (Q(x))) 
+
+(∃x) (P(x)) OR Q(x)) ≡ NOT (∀x) (NOT (P(x)) AND NOT (Q(x)))
+
+(∃x) (P(x) AND Q(x)) ≡ NOT (∀x) (NOT (P(x)) OR NOT (Q(x))) 
 
 
+remarque:
 
+Notice also that the following is TRUE, where the ⇒ symbol stands for implies: 
 
-
-
-
-
-
+(∀x)(P(x)) ⇒ (∃x)(P(x))
+NOT (∃x)(P(x)) ⇒ NOT (∀x)(P(x))
 
 
 
