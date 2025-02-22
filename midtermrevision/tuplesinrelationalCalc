@@ -1,3 +1,115 @@
- The result of such a query is the set of all tuples t that evalu- ate COND(t) to TRUE. 
+From : Chapter 8 The Relational Algebra and Relational Calculus , Fundamentals of DB , Elmasri - Navathe
+
+The result of such a query is the set of all tuples t that evaluate COND(t) to TRUE. 
  These tuples are said to satisfy COND(t). For example, to find all employees whose salary is above $50,000 
  we can write the following tuple calculus expression:
+{t | EMPLOYEE(t) AND t.Salary>50000}
+
+Each EMPLOYEE tuple t that satisfies the condition t.Salary>50000 will be retrieved. 
+
+The previous query retrieves all attribute values for each selected EMPLOYEE tuple t. To retrieve only some of the attributes—say, the first and last names—we write
+t.Fname, t.Lname | EMPLOYEE(t) AND t.Salary>50000}
+
+■ For each tuple variable t, the range relation R of t. This value is specified by a condition of the form R(t). If we do not specify a range relation, then the variable t will range over all possible tuples “in the universe” as it is not restricted to any one relation.
+■ A condition to select particular combinations of tuples. As tuple variables range over their respective range relations, the condition is evaluated for every possible combination of tuples to identify the selected combinations for which the condition evaluates to TRUE.
+■ A set of attributes to be retrieved, the requested attributes. The values of these attributes are retrieved for each selected combination of tuples.
+
+Query 0. Retrieve the birth date and address of the employee (or employees)
+whose name is John B. Smith.
+Q0: {t.Bdate, t.Address | EMPLOYEE(t) AND t.Fname=‘John’ AND t.Minit=‘B’ AND t.Lname=‘Smith’}
+270 Chapter 8 The Relational Algebra and Relational Calculus
+In tuple relational calculus, we first specify the requested attributes t.Bdate and t.Address for each selected tuple t. Then we specify the condition
+for selecting a tuple following the bar (|)—namely, that t be a tuple of the EMPLOYEE relation whose Fname, Minit,
+and Lname attribute values are ‘John’, ‘B’, and ‘Smith’, respectively.
+
+
+A general expression of the tuple relational calculus is of the form {t1.Aj, t2.Ak, ... , tn.Am | COND(t1, t2, ..., tn, tn+1, tn+2, ..., tn+m)} 
+- One formula can use many relations @ the same time 
+exple : 
+Imaginons une base de données avec les relations suivantes :  
+Étudiant(NoE, Nom) 
+Inscription(NoE, NoC) 
+Cours(NoC, NomC) 
+
+
+Si nous voulons récupérer les noms des étudiants inscrits au cours "maths", nous pouvons écrire l'expression suivante en calcul relationnel sur les tuples : 
+
+{ t1.Nom∣ ∃ t2 , t3 ( t1 ∈ Etudiant ∧ t2 ∈ Inscription ∧ t3 ∈ Cours ∧ t1. NoE = t2.NoE ∧ t2.NoC = t3.NoC ∧ t3. omC = " Math " ) }
+
+-> On veut les noms d'étudiants inscripts en cours de maths tel que le num d'etudiant figure dans la fiche d,inscription et équivalent, et que 
+dans cette fiche d'inscription le numéro de cours est équivalent à celui du cours de maths
+
+
+- Informally, a tuple variable t is bound if it is quantified, meaning that it appears in an (∃t) or (∀t) clause; otherwise, it is free. 
+Formally, we define a tuple variable in a formula as free or bound according to the following rules:
+
+
+
+
+
+
+----Query 1. List the name and address of all employees who work for the ‘Research’ department.---------
+
+Q1: {t.Fname, t.Lname, t.Address | EMPLOYEE(t) AND (∃d)(DEPARTMENT(d) AND d.Dname=‘Research’ AND d.Dnumber=t.Dno)}
+
+The only free tuple variables in a tuple relational calculus expression should be those that appear to the left of the bar (|).
+In Q1, t is the only free variable; it is then bound successively to each tuple. If a tuple satisfies the conditions specified after the bar in Q1, 
+the attributes Fname, Lname, and Address are retrieved for each such tuple. The conditions EMPLOYEE(t) and DEPARTMENT(d) specify the range relations for t and d.
+The condition d.Dname = ‘Research’ is a selection condition and corre- sponds to a SELECT operation in the relational algebra, whereas the condition 
+d.Dnumber = t.Dno is a join condition and is similar in purpose to the (INNER) JOIN operation (see Section 8.3).
+
+
+----Q2:  For every project located in ‘Stafford’, list the project number, the con- trolling department number,
+and the department manager’s last name, birth date, and address. ----------------- 
+
+{p.Pnumber, p.Dnum, m.Lname, m.Bdate, m.Address | PROJECT(p) AND EMPLOYEE(m) AND p.Plocation=‘Stafford’ AND ((∃d)(DEPARTMENT(d) AND p.Dnum=d.Dnumber AND d.Mgr_ssn=m.Ssn))}
+
+In Q2 there are two free tuple variables, p and m. Tuple variable d is bound to the existential quantifier. 
+The query condition is evaluated for every combination of tuples assigned to p and m,
+and out of all possible combinations of tuples to which p and m are bound, only the combinations that satisfy the condition are selected.
+Several tuple variables in a query can range over the same relation. For example, to specify Q8—for each employee, retrieve the employee’s 
+first and last name and the first and last name of his or her immediate supervisor we specify two tuple variables
+e and s that both range over the EMPLOYEE relation:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
