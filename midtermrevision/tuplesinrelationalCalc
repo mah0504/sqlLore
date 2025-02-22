@@ -1,0 +1,3 @@
+ The result of such a query is the set of all tuples t that evalu- ate COND(t) to TRUE. 
+ These tuples are said to satisfy COND(t). For example, to find all employees whose salary is above $50,000 
+ we can write the following tuple calculus expression:
