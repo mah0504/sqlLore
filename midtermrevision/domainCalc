@@ -1,0 +1,67 @@
+Différence entre calcul de domaine et de tuples ??
+
+!!!!!: Le calcul de domaine se concentre sur les valeurs individuelles des attributs d'une relation,
+  et utilise des variables pour désigner des valeurs de domaines plutôt que des tuples complets.
+
+Dans le calcul de domaine, les variables sont des valeurs (par exemple des entiers, des chaînes de caractères, etc.), et la syntaxe ressemble à cela :
+
+{n,p|∃a Etudiant(nom:n,prénom:p,année_naissance:a)∧a>1986} 
+
+{ no,p,n1,n2| Etudiant(nom:′Rochat′,prénom:p,matricule:no) ∧ Inscription(matricule:no,titre_cours:′BD′,note1:n1,note2:n2) } 
+on attribue des valeurs qu'on veut aux attributs ( filtres ? ) 
+
+{n, p | ∃a (Etudiant(n, p, a) ∧ a > 1986)}
+
+> Ici, les variables n, p, et a représentent des valeurs de domaines, c'est-à-dire des valeurs spécifiques dans les colonnes de la relation.
+Le calcul est basé sur les valeurs des attributs (par exemple, les prénoms, noms, et années de naissance) et non sur des tuples complets.
+  
+>>>> Ce type de calcul se concentre sur la sélection des valeurs des attributs qui satisfont la condition.
+
+
+
+Le calcul de tuples, en revanche, utilise des variables de tuples. Les variables représentent des tuples complets dans une relation.
+Dans le calcul de tuples, on travaille directement avec des tuples complets. Par exemple :
+
+{t.nom, t.prénom | ∃t (Etudiant(t.nom, t.prénom, t.année_naissance) ∧ t.année_naissance > 1986)}
+
+Ici, t est une variable de tuple représentant un tuple complet de la relation Etudiant.
+Le calcul est basé sur la sélection de tuples qui satisfont certaines conditions. Les variables comme t.nom, t.prénom font référence aux valeurs dans le tuple t.
+  
+Le calcul de tuples s'intéresse aux tuples complets, tandis que le calcul de domaine travaille au niveau des valeurs individuelles des attributs.
+  
+-- Extrait manuel Navathe ( 8.7 ) : 
+
+There is another type of relational calculus called the domain relational calculus, or simply domain calculus.
+  
+-Domain calculus differs from tuple calculus in the type of variables used in formulas: Rather than having variables range over tuples, 
+the variables range over single values from domains of attributes. 
+-To form a relation of degree n for a query result, we must have n of these domain variables—one for each attribute. 
+An expression of the domain calculus is of the form
+- General form : {x1, x2, ..., xn | COND(x1, x2, ..., xn, xn+1, xn+2, ..., xn+m)}
+where x1, x2, ... , xn, xn+1, xn+2, ... , xn+m are domain variables that range over domains (of attributes), 
+
+and COND is a condition or formula of the domain relational calculus.
+
+  
+1. An atom of the form R(x1, x2, ... , xj), where R is the name of a relation of degree j and each xi, 1 ≤ i ≤ j, is a domain variable.
+  This atom states that a list of values of <x1, x2, ... , xj> must be a tuple in the relation whose name is R, where xi is the value
+    of the ith attribute value of the tuple. To make a domain calculus expression more concise, we can drop the commas in a list of variables; thus, we can write:
+
+{x1, x2, ..., xn | R(x1 x2 x3) AND ...} 
+instead of:
+{x1, x2, ... , xn | R(x1, x2, x3) AND ...}
+
+2. An atom of the form xi op xj, where op is one of the comparison operators in
+the set {=, <, ≤, >, ≥, ≠}, and xi and xj are domain variables.
+  
+3. An atom of the form xi op c or c op xj, where op is one of the comparison operators in
+  the set {=, <, ≤, >, ≥, ≠}, xi and xj are domain variables, and c is a constant value.
+
+
+
+
+
+
+
+
+
