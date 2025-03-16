@@ -34,3 +34,10 @@ WHERE NOT EXISTS (
     FROM dependent
     WHERE essn = ssn
 );
+
+
+with recursive dep(essn,supssn) as
+(select ssn, superssn from employee where superssn is not null
+union
+select ssn,supssn from employee join dep on superssn=essn) select * from dep
+order by essn;

@@ -1,0 +1,40 @@
+begin transaction;
+
+
+-- Suppose que vous avez installé le schéma company_sem2
+
+\pset null '-'
+
+set search_path to company_sem2;
+
+select sex, 
+       round(avg(salary),2) as moy 
+       from employee 
+       group by sex 
+       order by sex;
+select row_number() over (order by sex,salary) as no,
+       sex,
+       salary,
+       round(avg(salary) over (),2) as moy1,
+       round(avg(salary) over (partition by sex),2) as moy2, 
+       round(avg(salary) over (partition by sex order by salary),2) as moy3,
+       sum(salary) over () as sum0,
+       sum(salary) over (order by sex,salary) as sum1,
+       sum(salary) over (order by sex,salary,ssn) as sum2,
+       sum(salary) over (partition by sex order by salary, ssn) as sum3
+       from employee order by sex,salary;
+select sex,
+       salary,
+       rank() over () as r0,
+       rank() over (order by sex,salary) as r1,
+       dense_rank() over (order by sex,salary) as r2,
+       rank() over (order by sex,salary,ssn) as r3,
+       rank() over (partition by sex order by salary) as r4,
+       dense_rank() over (partition by sex order by salary) as r5,
+       rank() over (partition by sex order by salary,ssn) as r6
+       from employee order by sex,salary;
+select salary from employee;
+select row_number() over () as num, 
+       salary,
+       lag(salary,1) over () as prevsal from employee;
+rollback;
