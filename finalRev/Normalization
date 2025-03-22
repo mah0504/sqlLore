@@ -1,0 +1,7 @@
+
+Une superclé est tout ensemble d’attributs qui permet d’identifier de manière unique toutes les lignes de la relation. 
+➡ Toute clé candidate est une superclé, mais toutes les superclés ne sont pas forcément des clés candidates.
+
+
+Une clé candidate est une superclé minimale, c'est-à-dire qu’on ne peut pas enlever un attribut sans perdre l’unicité.
+
